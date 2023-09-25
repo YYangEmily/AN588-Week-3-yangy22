@@ -1,0 +1,82 @@
+---
+title: "yangy22_OriginalHomeworkCode_02"
+author: "Emily Yang"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+    toc: true
+ 
+---
+<center><img src="https://cnprc.ucdavis.edu/wp-content/uploads/2014/05/FemaleTitiandInfant.jpg"></center><br>
+
+<br>*Ritika's Comments: I defintiely forgot to add a Titi Monkey picture in my code so great job! Also what a cute picture!*
+
+## What is the probability that she will hear more than 8 calls during any given session?
+
+<br>*Ritika's Comments: I used the same lower.tail functionality! I think your code is easier to understand than mine since you used x<-9:30. From a code reader perspective this is much easier to logically follow, but I wonder if the question wants everything above 8 (instead of stopping on 30)--I'm not sure! Just something to think about. Also great comments regarding the lower.tail functionality--definitely something I should add to my code! <br> I really liked your addition of the bar plot, it is always great to have a visual representation of what we are doing <br> Also noticed that you did more than 8 calls (I did 8 or more) so great catch on the wording there! I will change my code to also reflect that, thank you!*
+```{r Question 1}
+x <- 9:30
+l = 15
+probset <- ppois(x, l, lower.tail = FALSE) #ppois gives cumulative probability. 
+# lower.tail = TRUE cumulative probability that there will be x or fewer successes.
+# lower.tail = FALSE cumulative probability that there will be more than x successes.
+
+barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = " Cumulative Probability of more than 8 calls")
+
+probset[1] # probability that she will hear 9 or more calls. 
+```
+## What is the probability that she will hear no calls in a session?
+
+<br>*Ritika's Comments: Definitely not a must, but you can actually not re-declare lambda here if you want! The value of l should hold through the file. <br> I also found an interesting way to print values during the deceleration by putting the whole line in parenthesis if you are interested: (probset1 <- dpois(y, l)) *
+```{r Question 2}
+y <- 0
+l = 15
+probset1 <- dpois(y, l) #dpois the probability that there will be x successes
+barplot(probset1, names.arg = y, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 0 calls")
+probset1 # probability of hearing zero calls
+```
+
+## What is the probability that she will hear exactly 3 calls in a session?
+
+<br> *Ritika's Comments: If you want you could also use the same variable to store your 'x' values instead of declaring new variables for each chunk. No functional difference, just keeps the number of variables less! Totally up to you!*
+```{r Question 3}
+z <- 3
+l = 15
+probset2 <- dpois(z, l)
+barplot(probset2, names.arg = z, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 3 calls")
+probset2 # probability of hearing 3 calls
+```
+
+## Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30
+
+<br> *Ritika's Comments: Did this the exact same way as you!*
+```{r Question 4}
+a <- 0:30
+l = 15
+probset3 <- dpois(a, l) # probabilities of number of calls from 0 to 30
+barplot(probset3, names.arg = a, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Poisson mass function")
+```
+
+## Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+
+<br> *Ritika's Comments: Also did this the exact same way as you! I though the rpois command was super handy!*
+``` {r Question 5}
+b <- rpois(104, 15) # rpois(n, lambda). n is number of trials
+
+```
+## Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+<br> *Ritika's Comments: No comments here, I think this does exactly what the question is asking for in the most efficient way possible*
+``` {r Question 6}
+hist(b, xlim = c(0,30), main = "104 Simulated Sessions", xlab = "Number of Calls", ylab = "Number of Sessions" )
+
+```
+
+<br> *Ritika's Comments: For your explanation: the rpois() function (I believe) will randomly generate the data--so your inference of the number of successes below 5 or above 25 may actually not hold true every time you/someone knits the html/runs the code. When I knit your code on my end I actually do see some successes above 25. You may want to reword your explanation here just a bit! Other than that your graph looks perfect and very clean!*
+
+The histogram is grouped closer to the center of the distribution that the probability mass function plotted above. It does not have any successes below 5 or above 25.  
+
+<br>Poisson distribution: https://bookdown.org/gabriel_butler/ECON41Labs/tutorial-5-the-poisson-distribution.html
+<br>TOC https://bookdown.org/yihui/rmarkdown/html-document.html 
