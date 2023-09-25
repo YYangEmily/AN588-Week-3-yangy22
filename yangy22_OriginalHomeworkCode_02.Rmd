@@ -1,0 +1,45 @@
+---
+title: "yangy22_OriginalHomeworkCode_02"
+author: "Emily Yang"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+## What is the probability that she will hear more than 8 calls during any given session?
+```{r Question 1}
+x <- 8:30
+l = 15
+probset <- dpois(x = x, lambda = l)
+barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of more than 8 calls")
+x<- sum(probset)
+x
+```
+## What is the probability that she will hear no calls in a session?
+```{r Question 2}
+x <- 0:0
+l = 15
+probset <- dpois(x = x, lambda = l)
+barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 0 calls")
+probset
+```
+
+## What is the probability that she will hear exactly 3 calls in a session?
+```{r Question 3}
+x <- 3:3
+l = 15
+probset <- dpois(x = x, lambda = l)
+barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 3 calls")
+probset
+```
+
+## Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30
+
+```{r Question 4}
+x <- 0:30
+l = 15
+probset <- dpois(x = x, lambda = l)
+barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Poisson mass function")
+```
+
