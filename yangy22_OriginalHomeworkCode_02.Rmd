@@ -7,39 +7,53 @@ output:
     theme: cayman
     highlight: github
 ---
+<center><img src="https://cnprc.ucdavis.edu/wp-content/uploads/2014/05/FemaleTitiandInfant.jpg"> <br>
+
 ## What is the probability that she will hear more than 8 calls during any given session?
 ```{r Question 1}
 x <- 8:30
 l = 15
-probset <- dpois(x = x, lambda = l)
+probset <- ppois(x, l, lower.tail = FALSE)
 barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of more than 8 calls")
-x<- sum(probset)
-x
+x1<- sum(probset)
+x1
 ```
 ## What is the probability that she will hear no calls in a session?
 ```{r Question 2}
-x <- 0:0
+y <- 0
 l = 15
-probset <- dpois(x = x, lambda = l)
-barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 0 calls")
-probset
+probset1 <- dpois(y, l)
+barplot(probset1, names.arg = y, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 0 calls")
+probset1
 ```
 
 ## What is the probability that she will hear exactly 3 calls in a session?
 ```{r Question 3}
-x <- 3:3
+z <- 3
 l = 15
-probset <- dpois(x = x, lambda = l)
-barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 3 calls")
-probset
+probset2 <- dpois(z, l)
+barplot(probset2, names.arg = z, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 3 calls")
+probset2
 ```
 
 ## Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30
 
 ```{r Question 4}
-x <- 0:30
+a <- 0:30
 l = 15
-probset <- dpois(x = x, lambda = l)
-barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Poisson mass function")
+probset3 <- dpois(a, l)
+barplot(probset3, names.arg = a, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Poisson mass function")
 ```
 
+## Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+``` {r Question 5}
+b <- rpois(104, 15)
+
+```
+## Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+``` {r Question 6}
+hist(b, xlim = c(0,30))
+
+```
+
+The histogram is grouped closer to the center of the distribution that the probability mass function plotted above. 
