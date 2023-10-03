@@ -1,0 +1,67 @@
+---
+title: "yangy22_FinalHomeworkCode_02"
+author: "Emily Yang"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+    toc: true
+ 
+---
+<center><img src="https://cnprc.ucdavis.edu/wp-content/uploads/2014/05/FemaleTitiandInfant.jpg"></center><br>
+
+## What is the probability that she will hear more than 8 calls during any given session?
+```{r Question 1}
+x <- 9:30
+l = 15
+probset <- ppois(x, l, lower.tail = FALSE) #ppois gives cumulative probability. 
+# lower.tail = TRUE cumulative probability that there will be x or fewer successes.
+# lower.tail = FALSE cumulative probability that there will be more than x successes.
+
+barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = " Cumulative Probability of more than 8 calls")
+
+probset[1] # probability that she will hear 9 or more calls. 
+```
+## What is the probability that she will hear no calls in a session?
+```{r Question 2}
+y <- 0
+l = 15
+probset1 <- dpois(y, l) #dpois the probability that there will be x successes
+barplot(probset1, names.arg = y, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 0 calls")
+probset1 # probability of hearing zero calls
+```
+
+## What is the probability that she will hear exactly 3 calls in a session?
+```{r Question 3}
+z <- 3
+l = 15
+probset2 <- dpois(z, l)
+barplot(probset2, names.arg = z, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 3 calls")
+probset2 # probability of hearing 3 calls
+```
+
+## Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30
+
+```{r Question 4}
+a <- 0:30
+l = 15
+probset3 <- dpois(a, l) # probabilities of number of calls from 0 to 30
+barplot(probset3, names.arg = a, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Poisson mass function")
+```
+
+## Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+``` {r Question 5}
+b <- rpois(104, 15) # rpois(n, lambda). n is number of trials
+
+```
+## Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+``` {r Question 6}
+hist(b, xlim = c(0,30), main = "104 Simulated Sessions", xlab = "Number of Calls", ylab = "Number of Sessions" )
+
+```
+
+The histogram is grouped closer to the center of the distribution that the probability mass function plotted above. It does not have any successes below 5 or above 25.  
+
+<br>Poisson distribution: https://bookdown.org/gabriel_butler/ECON41Labs/tutorial-5-the-poisson-distribution.html
+<br>TOC https://bookdown.org/yihui/rmarkdown/html-document.html 
