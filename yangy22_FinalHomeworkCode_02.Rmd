@@ -22,30 +22,27 @@ probset <- ppois(x, l, lower.tail = FALSE) #ppois gives cumulative probability.
 barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = " Cumulative Probability of more than 8 calls")
 
 probset[1] # probability that she will hear 9 or more calls. 
+
 ```
 ## What is the probability that she will hear no calls in a session?
 ```{r Question 2}
 y <- 0
-l = 15
-probset1 <- dpois(y, l) #dpois the probability that there will be x successes
+(probset1 <- dpois(y, l)) #dpois the probability that there will be x successes
 barplot(probset1, names.arg = y, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 0 calls")
-probset1 # probability of hearing zero calls
 ```
 
 ## What is the probability that she will hear exactly 3 calls in a session?
 ```{r Question 3}
 z <- 3
-l = 15
-probset2 <- dpois(z, l)
+(probset2 <- dpois(z, l))
 barplot(probset2, names.arg = z, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Probability of 3 calls")
-probset2 # probability of hearing 3 calls
+
 ```
 
 ## Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30
 
 ```{r Question 4}
 a <- 0:30
-l = 15
 probset3 <- dpois(a, l) # probabilities of number of calls from 0 to 30
 barplot(probset3, names.arg = a, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Poisson mass function")
 ```
@@ -61,7 +58,9 @@ hist(b, xlim = c(0,30), main = "104 Simulated Sessions", xlab = "Number of Calls
 
 ```
 
-The histogram is grouped closer to the center of the distribution that the probability mass function plotted above. It does not have any successes below 5 or above 25.  
+The histogram represents 104 random trials so it is not as smooth as the distribution that the probability mass function plotted above. The small sample size means that we will not capture the rare events at either end of the poisson distribution and the occurances will not match up perfectly to probability. <br>
+
+Reflection: I learned a lot about how to use Poisson distribution and how to label and manipulate graphs. I liked Ritika's comments about putting the whole line in parenthesis (probset1 <- dpois(y, l)) so I don't have to put in probset1 again. I will be using this in the future. I also removed the repeated l = 15 because it would stay the same throughout. I did keep all my different variables because I like to see them all in the environment and its easier for me to keep track. I had trouble telling all the r commands apart but the bookdown website made things really clear. I like it more than the help page. <br>
 
 <br>Poisson distribution: https://bookdown.org/gabriel_butler/ECON41Labs/tutorial-5-the-poisson-distribution.html
 <br>TOC https://bookdown.org/yihui/rmarkdown/html-document.html 
